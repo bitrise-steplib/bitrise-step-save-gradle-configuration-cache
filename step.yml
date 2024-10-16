@@ -5,10 +5,10 @@ description: |
 
   More info about how the configuration caching works can be found [here](https://docs.gradle.org/current/userguide/configuration_cache.html).
 
-  If not specified otherwise, the current directory is assumed to be the project dir, and thus the `./gradle/configuration-cache` directory is saved. 
+  If not specified otherwise, the current directory is assumed to be the project dir, and thus the `./gradle/configuration-cache` directory is saved.
 
-  IMPORTANT NOTES: 
-  - You need to have an activate Bitrise Build Cache Trial or Subscription for your workspace to use this step. 
+  IMPORTANT NOTES:
+  - You need to have an activate Bitrise Build Cache Trial or Subscription for your workspace to use this step.
   - You also have to set up the encryption key `GRADLE_ENCRYPTION_KEY` in the Bitrise Secrets with the result of running `openssl rand -base64 16`.
   - Setting the encryption key is only supported from Gradle 8.6, so your project must have Gradle 8.6 or higher.
 website: https://github.com/bitrise-steplib/bitrise-step-save-gradle-configuration-cache
@@ -41,7 +41,7 @@ inputs:
     summary: Override key used for saving the cache. By default the app slug and branch is used
     description: |-
       Manually provided override key used for saving the cache.
-      
+     
       If not specified, by default a key is generated from the app slug and the current branch. If not specified, the contents are also saved to a fallback key consisting only of the app slug. This helps reduce cache misses on new feature branches.
     is_required: false
 - config_cache_dir: ./.gradle/configuration-cache
