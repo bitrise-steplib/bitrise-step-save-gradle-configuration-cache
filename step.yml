@@ -1,16 +1,16 @@
 title: Save Gradle configuration cache
 summary: Caches the Gradle configuration cache folder used by Gradle. Uses the Bitrise Build Cache infrastructure.
 description: |
-  This steps caches the Gradle configuration cache folder and the related metadata required to speed up subsequent builds. The cache is stored in the Bitrise Build Cache infrastructure.
+    This step caches the Gradle configuration cache folder along with the necessary metadata to speed up future builds. The cache is stored within the Bitrise Build Cache infrastructure.
 
-  More info about how the configuration caching works can be found [here](https://docs.gradle.org/current/userguide/configuration_cache.html).
+    For more information on how configuration caching works, refer to the [Gradle user guide](https://docs.gradle.org/current/userguide/configuration_cache.html).
 
-  If not specified otherwise, the current directory is assumed to be the project dir, and thus the `./gradle/configuration-cache` directory is saved.
+    Unless specified otherwise, the current directory is assumed to be the project directory, and therefore the `./gradle/configuration-cache` directory will be saved.
 
-  IMPORTANT NOTES:
-  - You need to have an activate Bitrise Build Cache Trial or Subscription for your workspace to use this step.
-  - You also have to set up the encryption key `GRADLE_ENCRYPTION_KEY` in the Bitrise Secrets with the result of running `openssl rand -base64 16`.
-  - Setting the encryption key is only supported from Gradle 8.6, so your project must have Gradle 8.6 or higher.
+    **IMPORTANT NOTES:**
+    - You must have an active Bitrise Build Cache Trial or Subscription for your workspace to use this step.
+    - You also need to set up the encryption key `GRADLE_ENCRYPTION_KEY` in Bitrise Secrets by using the result from running `openssl rand -base64 16`.
+    - Setting the encryption key is supported only from Gradle version 8.6 onwards, so your project must be using Gradle 8.6 or higher.
 website: https://github.com/bitrise-steplib/bitrise-step-save-gradle-configuration-cache
 source_code_url: https://github.com/bitrise-steplib/bitrise-step-save-gradle-configuration-cache
 support_url: https://github.com/bitrise-steplib/bitrise-step-save-gradle-configuration-cache
