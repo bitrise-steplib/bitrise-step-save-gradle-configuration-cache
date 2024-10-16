@@ -1,0 +1,77 @@
+format_version: "11"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  - CACHE_KEY: "gradle-configuration-cache-e2e-test"
+
+workflows:
+  test_config_cache:
+    after_run:
+    - _setup
+    - _run
+    - _check
+
+  _run:
+    steps:
+    - path::./:
+        title: Execute step
+        run_if: "true"
+        is_skippable: false
+        inputs:
+        - verbose: true
+        - key_override: $CACHE_KEY
+
+  _check:
+    steps:
+#    - script: TODO after both steps have been merged
+#        title: Delete cache
+#        inputs:
+#        - content: |
+#            #!/usr/bin/env bash
+#            set -ex
+#
+#            rm -rf ./.gradle/configuration-cache
+#    - git::https://github.com/bitrise-steplib/bitrise-step-restore-gradle-configuration-cache.git@main:
+#        title: Restore cache
+#        is_skippable: false
+#        inputs:
+#        - verbose: true
+#        - key_override: $CACHE_KEY
+    - script:
+        title: Check config cache folder
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -ex
+
+            config_cache_dir="./.gradle/configuration-cache"
+
+            if [ -d "$config_cache_dir" ]; then
+              if [ "$(ls -A "$config_cache_dir")" ]; then
+                echo "Config cache exists and is not empty"
+              else
+                echo "Config cache folder exists but empty"
+                exit 1
+              fi
+            else
+              echo "Config cache folder does not exist"
+              exit 1
+            fi
+
+  _setup:
+    steps:
+    - script:
+        title: Setup directory
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -ex
+         
+            rm -rf _tmp
+            mkdir -p _tmp
+            cp ./.gradle ./_tmp -r
+    - change-workdir:
+        title: Switch working dir to _tmp
+        inputs:
+        - path: ./_tmp
