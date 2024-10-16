@@ -41,7 +41,7 @@ inputs:
     summary: Override key used for saving the cache. By default the app slug and branch is used
     description: |-
       Manually provided override key used for saving the cache.
-     
+
       If not specified, by default a key is generated from the app slug and the current branch. If not specified, the contents are also saved to a fallback key consisting only of the app slug. This helps reduce cache misses on new feature branches.
     is_required: false
 - config_cache_dir: ./.gradle/configuration-cache
