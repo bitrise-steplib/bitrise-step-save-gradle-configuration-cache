@@ -28,7 +28,7 @@ echo "Bitrise Build Cache is activated in this workspace"
 set -x
 
 # download the Bitrise Build Cache CLI
-export BITRISE_BUILD_CACHE_CLI_VERSION=${BITRISE_BUILD_CACHE_CLI_VERSION:="v0.15.0"}
+export BITRISE_BUILD_CACHE_CLI_VERSION=${BITRISE_BUILD_CACHE_CLI_VERSION:="v0.15.5"}
 curl --retry 5 -sSfL 'https://raw.githubusercontent.com/bitrise-io/bitrise-build-cache-cli/main/install/installer.sh' | sh -s -- -b /tmp/bin -d $BITRISE_BUILD_CACHE_CLI_VERSION
 
 cmd="/tmp/bin/bitrise-build-cache save-gradle-configuration-cache --config-cache-dir $config_cache_dir"
